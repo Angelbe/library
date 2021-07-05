@@ -29,7 +29,7 @@ export default function Home() {
         <div>
           Made by <br /> Ángel Bernardo Lupiáñez
         </div>
-        <div>Powered by passion</div>
+        <div>Powered by React</div>
       </HomeFooter>
     </HomeContainer>
   );

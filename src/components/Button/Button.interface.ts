@@ -1,5 +1,7 @@
+import React from "react";
+
 interface IButtonProps {
-  text: string;
+  children?: React.ReactNode;
   color?: string;
   bcolor?: string;
 }

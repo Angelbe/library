@@ -4,16 +4,18 @@ interface ITheme {
   mainColorlighter: string;
   secundaryColor: string;
   secundaryColorLighter: string;
+  disabledColor: string;
   borderRadius: string;
 }
 
 const theme: ITheme = {
   defaultFontSize: "16px",
-  mainColor: "#F2AA4CFF",
-  mainColorlighter: "#f5c167",
-  secundaryColor: "#101820FF",
-  secundaryColorLighter: "#918d84",
-  borderRadius: "5px",
+  mainColor: "#f7f7f7",
+  mainColorlighter: "#efefef",
+  secundaryColor: "#f51379",
+  secundaryColorLighter: "#ea66a2",
+  disabledColor: "#b5b3b3",
+  borderRadius: "10px",
 };
 
 export { theme };

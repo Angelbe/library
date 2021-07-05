@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { IButtonProps } from "./Button.interface";
 import { ButtonStyled } from "./Button.styles";
 
-const Button: React.FC<IButtonProps> = ({ text, color, bcolor }) => {
+const Button: React.FC<IButtonProps> = ({ color, bcolor, children }) => {
   return (
     <ButtonStyled color={color} bcolor={bcolor}>
-      {text}
+      {children}
     </ButtonStyled>
   );
 };
@@ -14,7 +14,7 @@ const Button: React.FC<IButtonProps> = ({ text, color, bcolor }) => {
 export default Button;
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  children: PropTypes.node,
   color: PropTypes.string,
   bcolor: PropTypes.string
 };

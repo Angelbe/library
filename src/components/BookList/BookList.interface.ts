@@ -1,4 +1,4 @@
-import { IBook } from "../../services/userServices.interfaces";
+import { IBook } from "src/services/bookServices.interface";
 
 export interface IFilterBookList {
   book: IBook;

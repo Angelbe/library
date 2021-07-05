@@ -15,6 +15,15 @@ export const blinkBetweenBColors = keyframes`
     background-color:${theme.secundaryColor};
   }
   to {
+    background-color:${"#ffa4cd"};
+  }
+`;
+
+export const blinkBetweenBColorsSelected = keyframes`
+  from {
+    background-color:${theme.mainColor};
+  }
+  to {
     background-color:${theme.secundaryColorLighter};
   }
 `;

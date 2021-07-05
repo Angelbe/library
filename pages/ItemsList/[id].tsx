@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Head from "next/head";
-
+import Image from "next/image";
 import {
   HomeMain,
   HomeFooter,
   HomeContainer,
   HomeHeader,
+  ReturnArrow,
 } from "styles/pagesStyles/Home.styles";
-import BookList from "src/components/BookList";
+import BookDetails from "src/components/BookDetails";
+import backArrow from "public/arrow.png";
 
-export default function Home() {
+export default function ItemDetails() {
   return (
     <HomeContainer>
       <Head>
@@ -21,15 +24,27 @@ export default function Home() {
         <link rel="icon" href="/favi.ico" />
       </Head>
       <HomeHeader>Header</HomeHeader>
+      <ReturnArrow>
+        <Link
+          href={{
+            pathname: "/ItemsList",
+          }}
+          passHref
+        >
+          <div>
+            <Image src={backArrow} alt="back arrow" width={50} height={50} />
+          </div>
+        </Link>
+      </ReturnArrow>
       <HomeMain>
-        <BookList />
+        <BookDetails />
       </HomeMain>
 
       <HomeFooter>
         <div>
           Made by <br /> Ángel Bernardo Lupiáñez
         </div>
-        <div>Powered by passion</div>
+        <div>Powered by React</div>
       </HomeFooter>
     </HomeContainer>
   );

@@ -1,7 +1,13 @@
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { HomeMain, HomeFooter,HomeContainer,HomeHeader } from "../styles/pagesStyles/Home.styles";
+
+import {
+  HomeMain,
+  HomeFooter,
+  HomeContainer,
+  HomeHeader,
+} from "styles/pagesStyles/Home.styles";
+import BookList from "src/components/BookList";
 
 export default function Home() {
   return (
@@ -15,7 +21,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomeHeader>Header</HomeHeader>
-      <HomeMain>Hello world</HomeMain>
+      <HomeMain>
+        <BookList />
+      </HomeMain>
 
       <HomeFooter>
         Made by <br /> Ángel Bernardo Lupiáñez

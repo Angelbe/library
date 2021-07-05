@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { blinkBetweenBColors } from "src/styles/animationKeyframes";
-import { IUserItemStyled } from "./UserList.interface";
+import { IBookItemStyled } from "./BookList.interface";
 
-const UserListStyled = styled.ul`
+const BookListStyled = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
@@ -12,7 +12,7 @@ const UserListStyled = styled.ul`
   list-style-type: none;
 `;
 
-const UserItemStyled = styled.li<IUserItemStyled>`
+const BookItemStyled = styled.li<IBookItemStyled>`
   width: 100%;
   margin: 5px 0;
   cursor: pointer;
@@ -33,4 +33,4 @@ const UserItemStyled = styled.li<IUserItemStyled>`
   }
 `;
 
-export { UserListStyled, UserItemStyled };
+export { BookListStyled, BookItemStyled };

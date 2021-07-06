@@ -40,7 +40,7 @@ export default function handler(
         price,
       };
       bookDetailsList.push(newBookDetailed);
-      result.push(newBook);
+      listItems.push(newBook);
       res.status(200).json("OK");
       break;
     case "GET":

@@ -21,7 +21,7 @@ export const TitleContainer = styled.div`
   grid-row: title-start / title-end;
   display: flex;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-decoration: underline;
 `;
 

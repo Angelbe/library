@@ -45,6 +45,7 @@ const HomeFooter = styled.footer`
 
 const ReturnArrow = styled.div`
   cursor: pointer;
+  margin-top: 25px;
   grid-row: main-start / main-end;
   grid-column: page-start / main-start;
   display: flex;

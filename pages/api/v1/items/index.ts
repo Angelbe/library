@@ -19,7 +19,7 @@ const listItems: IBook[] = [
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IBook[]>
+  res: NextApiResponse<IBook[] | string>
 ) {
   let result = listItems;
 
@@ -32,16 +32,16 @@ export default function handler(
         link: `/api/v1/items/${newId}`,
         title,
       };
-      const newBookDetailed =   {
+      const newBookDetailed = {
         id: newId,
         image,
         title,
         author,
         price,
       };
-      bookDetailsList.push(newBookDetailed)
+      bookDetailsList.push(newBookDetailed);
       result.push(newBook);
-      res.status(200).json(listItems);
+      res.status(200).json("OK");
       break;
     case "GET":
     default:

@@ -25,7 +25,7 @@ const BookList: React.FC = () => {
   const [bookSelected, setBookSelected] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const reloadList = () => {
+  const reloadList: () => void = () => {
     setLoading(true);
     getItemList({ offset, count, page })
       .then((result) => {
@@ -55,7 +55,7 @@ const BookList: React.FC = () => {
           placeholder="Filter here..."
         />
         <Counter setNumber={setPage} />
-        <PopupExample />
+        <PopupExample reloadList={reloadList} />
         <Link
           href={{
             pathname: "/ItemsList/[id]",

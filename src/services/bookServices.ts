@@ -30,14 +30,12 @@ const getItemDetails: getItemDetailsType = ({ itemID }) => {
 };
 
 const putNewBook: putNewBookType = ({ title, author, price, image }) => {
-  console.log("Enviando...")
   return axios({
     method: "put",
     url: `/api/v1/items`,
     data: { title, author, price, image },
     headers: { "content-type": "application/json" },
   }).then((r) => {
-    console.log("LOGRADO", r.data);
     return r.data;
   });
 };

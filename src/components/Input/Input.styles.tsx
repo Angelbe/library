@@ -12,6 +12,9 @@ const InputStyled = styled.input`
   ::placeholder {
     color: ${theme.secundaryColorLighter};
   }
+  ::-webkit-inner-spin-button {
+    display: none;
+  }
 `;
 
 export { InputStyled };

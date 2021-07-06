@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.popup-content {
+  width: 550px !important;
+  border-radius: 75px;
+  border: 1px solid #ea66a2 !important;
+  
+}

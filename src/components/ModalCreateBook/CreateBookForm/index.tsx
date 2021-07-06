@@ -1,14 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ButtonStyled } from "src/components/Button/Button.styles";
 import Input from "src/components/Input";
 import { putNewBook } from "src/services/bookServices";
-import { FormContainer } from "./CreateBookForm.styles";
+import Loader from "src/components/Spinner";
+import {
+  FormContainer,
+  CongratulationsContainer,
+  TitleContainer,
+  TitleInputContainer,
+  PriceInputContainer,
+  ImageInputContainer,
+  AuthorInputContainer,
+  ButtonsContainer,
+  FormTooltip,
+} from "./CreateBookForm.styles";
 
-const CreateBookForm = () => {
+interface CreateBookFormProps {
+  closeModal: () => void;
+}
+
+const CreateBookForm: React.FC<CreateBookFormProps> = ({ closeModal }) => {
   const [formTitle, setFormTitle] = useState<string>("");
   const [formAuthor, setFormAuthor] = useState<string>("");
   const [formPrice, setFormPrice] = useState<string>("");
   const [formImage, setFormImage] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [isFormReady, setIsFormReady] = useState(false);
+  const [bookCreated, setBookCreated] = useState(false);
+
+  useEffect(() => {
+    if (
+      formTitle.length > 0 &&
+      formAuthor.length > 0 &&
+      formPrice.length > 0 &&
+      formImage.length > 0
+    ) {
+      setIsFormReady(true);
+    } else {
+      setIsFormReady(false);
+    }
+  }, [formTitle, formAuthor, formPrice, formImage]);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormTitle(event.target.value);
@@ -24,21 +55,48 @@ const CreateBookForm = () => {
   };
 
   const handleSubmit = (event: any) => {
+    setLoading(true);
     event.preventDefault();
-    
+
     putNewBook({
       title: formTitle,
       author: formAuthor,
       price: formPrice,
       image: formImage,
-    });
+    })
+      .then((response) => {
+        switch (response) {
+          case "OK":
+            setBookCreated(true);
+            break;
+          default:
+            break;
+        }
+      })
+      .finally(() => setLoading(false));
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (bookCreated) {
+    return (
+      <CongratulationsContainer>
+        <h1>
+          <b>Congratulations!</b>
+        </h1>
+        <p> your book has been submited</p>
+        <ButtonStyled onClick={closeModal}>close</ButtonStyled>
+      </CongratulationsContainer>
+    );
+  }
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <h1>Submit your book</h1>
-      <div>
-        <div>Title</div>
+      <TitleContainer>Submit your book</TitleContainer>
+      <TitleInputContainer>
+        <p>Title:</p>
         <Input
           type="text"
           name="title"
@@ -46,10 +104,10 @@ const CreateBookForm = () => {
           placeholder="title"
           onChange={handleTitleChange}
         />
-      </div>
+      </TitleInputContainer>
 
-      <div>
-        <div>Author</div>
+      <AuthorInputContainer>
+        <p>Author:</p>
         <Input
           type="text"
           name="author"
@@ -57,29 +115,36 @@ const CreateBookForm = () => {
           placeholder="author"
           onChange={handleAuthorChange}
         />
-      </div>
-      <div>
-        <div>Image</div>
+      </AuthorInputContainer>
+      <ImageInputContainer>
+        <p>Image url:</p>
         <Input
           type="text"
           name="image"
           id="image"
-          placeholder="image"
+          placeholder="image url"
           onChange={handleImageChange}
         />
-      </div>
-      <div>
-        <div>Price</div>
+      </ImageInputContainer>
+      <PriceInputContainer>
+        <p>Price:</p>
         <Input
-          type="text"
+          type="number"
           name="price"
           id="price"
           placeholder="price"
           onChange={handlePriceChange}
         />
-      </div>
-      <ButtonStyled type="submit" >create</ButtonStyled>
-      <ButtonStyled type="button">close</ButtonStyled>
+      </PriceInputContainer>
+      <ButtonsContainer>
+        <ButtonStyled type="submit" disabled={!isFormReady}>
+          <FormTooltip>Fill all the fields</FormTooltip>
+          Create
+        </ButtonStyled>
+        <ButtonStyled type="button" onClick={closeModal}>
+          Close
+        </ButtonStyled>
+      </ButtonsContainer>
     </FormContainer>
   );
 };

@@ -5,31 +5,22 @@ import { ButtonStyled } from "src/components/Button/Button.styles";
 import CreateBookForm from "./CreateBookForm";
 import { ModalContainer } from "./ModalCreateBook.styles";
 
-const PopupExample = () => {
+interface PopupCreateBookProps {
+  reloadList: () => void;
+}
+
+const PopupCreateBook: React.FC<PopupCreateBookProps> = ({ reloadList }) => {
   return (
     <Popup
       trigger={<ButtonStyled id="create-book"> Create book </ButtonStyled>}
       modal
       nested
+      onClose={reloadList}
     >
       {(close: any) => {
         return (
           <ModalContainer className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <CreateBookForm />
-            <div className="actions">
-              <button
-                className="button"
-                onClick={() => {
-                  console.log("modal closed ");
-                  close();
-                }}
-              >
-                close modal
-              </button>
-            </div>
+            <CreateBookForm closeModal={close} />
           </ModalContainer>
         );
       }}
@@ -37,4 +28,4 @@ const PopupExample = () => {
   );
 };
 
-export default PopupExample;
+export default PopupCreateBook;

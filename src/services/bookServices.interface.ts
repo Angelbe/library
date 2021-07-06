@@ -35,6 +35,4 @@ export type getItemDetailsType = (
   params: getItemDetailsParams
 ) => Promise<IBookDetails>;
 
-export type putNewBookType = (
-  params: putNewBookParams
-) => Promise<IBookDetails>;
+export type putNewBookType = (params: putNewBookParams) => Promise<string>;

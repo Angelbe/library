@@ -127,7 +127,7 @@ const CreateBookForm: React.FC<CreateBookFormProps> = ({ closeModal }) => {
         />
       </ImageInputContainer>
       <PriceInputContainer>
-        <p>Price:</p>
+        <p>Price (€) :</p>
         <Input
           type="number"
           name="price"

@@ -12,9 +12,13 @@ import {
   BookListContainer,
   BookListHeader,
   Tooltip,
+  SecondRowHeader,
+  FirstRowHeader,
+  ThirdRowHeader,
+  ParametersInput,
 } from "./BookList.styles";
 import { filterBookList } from "./BookList.helpers";
-import PopupExample from "../ModalCreateBook";
+import PopupCreateBook from "../ModalCreateBook";
 
 const BookList: React.FC = () => {
   const [offset, setOffset] = useState<number>(0);
@@ -41,33 +45,59 @@ const BookList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    reloadList();
-  }, [page]);
+    if (offset >= 0 && count >= 0) {
+      reloadList();
+    }
+  }, [page, offset, count]);
 
   return (
     <BookListContainer>
       <BookListHeader>
-        <Input
-          type="text"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setFilterText(event.target.value);
-          }}
-          placeholder="Filter here..."
-        />
-        <Counter setNumber={setPage} />
-        <PopupExample reloadList={reloadList} />
-        <Link
-          href={{
-            pathname: "/ItemsList/[id]",
-            query: { id: bookSelected },
-          }}
-          passHref
-        >
-          <ButtonStyled disabled={!bookSelected}>
-            <Tooltip>Select a book</Tooltip>
-            See details
-          </ButtonStyled>
-        </Link>
+        <FirstRowHeader>
+          <b>Count:</b>
+          <ParametersInput
+            type="number"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setCount(parseInt(event.target.value, 10));
+            }}
+            value={count}
+          />
+        </FirstRowHeader>
+        <SecondRowHeader>
+          <Input
+            type="text"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setFilterText(event.target.value);
+            }}
+            placeholder="Filter here..."
+          />
+          <div>
+            <b>Offset:</b>
+            <ParametersInput
+              type="number"
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setOffset(parseInt(event.target.value, 10));
+              }}
+              value={offset}
+            />
+          </div>
+        </SecondRowHeader>
+        <ThirdRowHeader>
+          <PopupCreateBook reloadList={reloadList} />
+          <Counter setNumber={setPage} />
+          <Link
+            href={{
+              pathname: "/ItemsList/[id]",
+              query: { id: bookSelected },
+            }}
+            passHref
+          >
+            <ButtonStyled disabled={!bookSelected}>
+              <Tooltip>Select a book</Tooltip>
+              See details
+            </ButtonStyled>
+          </Link>
+        </ThirdRowHeader>
       </BookListHeader>
 
       {loading ? (

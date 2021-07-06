@@ -7,16 +7,23 @@ const CounterContainer = styled.div`
   justify-content: center;
 `;
 
-const CounterInput = styled.input`
+const CounterView = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
   width: 50px;
   height: 50px;
+  color: ${theme.secundaryColor};
   border-color: ${theme.secundaryColorLighter};
-  border-radius: ${theme.borderRadius};
+  border-radius: 25px;
+  margin: 0 10px;
   text-align: center;
   font-size: 1.1rem;
   ::-webkit-inner-spin-button {
     display: none;
   }
+  outline: none;
 `;
 
 const CaretContainer = styled.div`
@@ -25,4 +32,4 @@ const CaretContainer = styled.div`
   cursor: pointer;
 `;
 
-export { CounterContainer, CounterInput, CaretContainer };
+export { CounterContainer, CounterView, CaretContainer };

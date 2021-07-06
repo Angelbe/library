@@ -5,6 +5,7 @@ import {
 } from "styles/animationKeyframes";
 import { ButtonStyled } from "src/components/Button/Button.styles";
 import { theme } from "styles/theme";
+import Input from "src/components/Input";
 import { IBookItemStyled } from "./BookList.interface";
 
 const BookListStyled = styled.ul`
@@ -50,6 +51,26 @@ const BookListHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
   min-width: 500px;
+  flex-flow: column;
+`;
+
+const FirstRowHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const SecondRowHeader = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ThirdRowHeader = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Tooltip = styled.div`
@@ -73,10 +94,20 @@ const Tooltip = styled.div`
   }
 `;
 
+const ParametersInput = styled(Input)`
+  text-align: center;
+  width: 100px;
+  margin-left: 5px;
+`;
+
 export {
   BookListStyled,
   BookItemStyled,
   BookListContainer,
   BookListHeader,
   Tooltip,
+  SecondRowHeader,
+  FirstRowHeader,
+  ParametersInput,
+  ThirdRowHeader,
 };

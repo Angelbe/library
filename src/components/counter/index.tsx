@@ -5,7 +5,7 @@ import leftCaret from "public/caret-left.png";
 import rightCaret from "public/caret-right.png";
 import {
   CounterContainer,
-  CounterInput,
+  CounterView,
   CaretContainer,
 } from "./Counter.styles";
 import { CounterParams } from "./Counter.interface";
@@ -19,10 +19,6 @@ const Counter: React.FC<CounterParams> = ({ setNumber }) => {
     }
     setNumber(count);
   }, [count]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCount(parseInt(e.target.value));
-  };
 
   const handleInputPlusChange = () => {
     setCount(count + 1);
@@ -44,7 +40,7 @@ const Counter: React.FC<CounterParams> = ({ setNumber }) => {
         />
       </CaretContainer>
 
-      <CounterInput type="number" onChange={handleInputChange} value={count} />
+      <CounterView> {count}</CounterView>
       <CaretContainer>
         <Image
           onClick={handleInputPlusChange}

@@ -9,6 +9,7 @@ const FormContainer = styled.form`
   flex-flow: column;
   justify-items: center;
   height: 500px;
+  width: 100%;
   p {
     font-weight: 600;
   }

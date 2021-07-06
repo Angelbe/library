@@ -1,6 +1,8 @@
+/* eslint-disable no-case-declarations */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { IBook } from "src/services/bookServices.interface";
+import { bookDetailsList } from "./[id]";
 
 const listItems: IBook[] = [
   { id: 1, link: "/api/v1/items/1", title: "Harry Poter" },
@@ -19,24 +21,48 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<IBook[]>
 ) {
-  const { count, offset, page } = req.query;
-  const offsetNum = JSON.parse(offset as string);
-  const countNum = JSON.parse(count as string);
-  const pageNum = JSON.parse(page as string);
-
   let result = listItems;
-  if (offsetNum > 0) {
-    result = result.slice(offsetNum);
-  }
-  if (countNum > 0) {
-    let endCount = pageNum * countNum;
-    let startCount = endCount - countNum;
-    if (endCount > listItems.length) {
-      endCount = listItems.length;
-      startCount = endCount - 5;
-    }
-    result = result.slice(startCount, endCount);
-  }
 
-  res.status(200).json(result);
+  switch (req.method) {
+    case "PUT":
+      const { author, image, price, title } = req.body;
+      const newId = listItems[listItems.length - 1].id + 1;
+      const newBook = {
+        id: newId,
+        link: `/api/v1/items/${newId}`,
+        title,
+      };
+      const newBookDetailed =   {
+        id: newId,
+        image,
+        title,
+        author,
+        price,
+      };
+      bookDetailsList.push(newBookDetailed)
+      result.push(newBook);
+      res.status(200).json(listItems);
+      break;
+    case "GET":
+    default:
+      const { count, offset, page } = req.query;
+      const offsetNum = JSON.parse(offset as string);
+      const countNum = JSON.parse(count as string);
+      const pageNum = JSON.parse(page as string);
+      if (offsetNum > 0) {
+        result = result.slice(offsetNum);
+      }
+      if (countNum > 0) {
+        let endCount = pageNum * countNum;
+        let startCount = endCount - countNum;
+        if (endCount > listItems.length) {
+          endCount = listItems.length;
+          startCount = endCount - 5;
+        }
+        result = result.slice(startCount, endCount);
+      }
+
+      res.status(200).json(result);
+      break;
+  }
 }

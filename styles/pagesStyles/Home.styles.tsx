@@ -25,6 +25,7 @@ const HomeMain = styled.main`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 25px;
 `;
 
 const HomeFooter = styled.footer`

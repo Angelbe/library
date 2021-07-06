@@ -8,6 +8,7 @@ import {
   HomeHeader,
 } from "styles/pagesStyles/Home.styles";
 import BookList from "src/components/BookList";
+import ZeeloHeader from "src/ZeeloHeader";
 
 export default function Home() {
   return (
@@ -20,7 +21,9 @@ export default function Home() {
         />
         <link rel="icon" href="/favi.ico" />
       </Head>
-      <HomeHeader>Header</HomeHeader>
+      <HomeHeader>
+        <ZeeloHeader />
+      </HomeHeader>
       <HomeMain>
         <BookList />
       </HomeMain>

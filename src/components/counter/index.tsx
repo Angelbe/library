@@ -1,18 +1,14 @@
 /* eslint-disable radix */
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import leftCaret from "public/caret-left.png";
+import rightCaret from "public/caret-right.png";
 import {
   CounterContainer,
   CounterInput,
   CaretContainer,
 } from "./Counter.styles";
-import caret from "public/caret-left.png";
-import Image from "next/image";
-import leftCaret from "public/caret-left.png";
-import rightCaret from "public/caret-right.png";
-
-interface CounterParams {
-  setNumber: React.Dispatch<React.SetStateAction<number>>;
-}
+import { CounterParams } from "./Counter.interface";
 
 const Counter: React.FC<CounterParams> = ({ setNumber }) => {
   const [count, setCount] = useState<number>(1);

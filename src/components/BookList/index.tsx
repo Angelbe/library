@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getItemList, getBody } from "src/services/bookServices";
+import { getItemList } from "src/services/bookServices";
 import { IBook } from "src/services/bookServices.interface";
 import Link from "next/link";
 import Loader from "src/components/Spinner";
 import { ButtonStyled } from "src/components/Button/Button.styles";
 import Input from "src/components/Input";
-import Counter from "src/components/counter";
+import Counter from "src/components/Counter";
 import {
   BookItemStyled,
   BookListStyled,
@@ -14,6 +14,7 @@ import {
   Tooltip,
 } from "./BookList.styles";
 import { filterBookList } from "./BookList.helpers";
+import PopupExample from "../ModalCreateBook";
 
 const BookList: React.FC = () => {
   const [offset, setOffset] = useState<number>(0);
@@ -36,12 +37,10 @@ const BookList: React.FC = () => {
   };
 
   useEffect(() => {
-    getBody();
     reloadList();
   }, []);
 
   useEffect(() => {
-    console.log(page);
     reloadList();
   }, [page]);
 
@@ -56,6 +55,7 @@ const BookList: React.FC = () => {
           placeholder="Filter here..."
         />
         <Counter setNumber={setPage} />
+        <PopupExample />
         <Link
           href={{
             pathname: "/ItemsList/[id]",

@@ -11,6 +11,7 @@ import {
 } from "styles/pagesStyles/Home.styles";
 import BookDetails from "src/components/BookDetails";
 import backArrow from "public/arrow.png";
+import ZeeloHeader from "src/ZeeloHeader";
 
 export default function ItemDetails() {
   return (
@@ -23,7 +24,9 @@ export default function ItemDetails() {
         />
         <link rel="icon" href="/favi.ico" />
       </Head>
-      <HomeHeader>Header</HomeHeader>
+      <HomeHeader>
+        <ZeeloHeader />
+      </HomeHeader>
       <ReturnArrow>
         <Link
           href={{

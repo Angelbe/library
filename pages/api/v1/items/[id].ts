@@ -1,7 +1,7 @@
 import { IBookDetails } from "src/services/bookServices.interface";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const bookDetailsList: IBookDetails[] = [
+export const bookDetailsList: IBookDetails[] = [
   {
     id: 1,
     image: "https://m.media-amazon.com/images/I/912+lFcOMxL._AC_UL320_.jpg",

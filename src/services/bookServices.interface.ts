@@ -18,12 +18,23 @@ export interface getItemListParams {
   page: number;
 }
 
+export interface putNewBookParams {
+  title: string;
+  author: string;
+  price: string;
+  image: string;
+}
+
 export interface getItemDetailsParams {
-  itemID: number;
+  itemID: string | string[] | number;
 }
 
 export type getItemListType = (params: getItemListParams) => Promise<IBook[]>;
 
 export type getItemDetailsType = (
   params: getItemDetailsParams
+) => Promise<IBookDetails>;
+
+export type putNewBookType = (
+  params: putNewBookParams
 ) => Promise<IBookDetails>;

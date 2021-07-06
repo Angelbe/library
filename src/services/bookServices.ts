@@ -2,11 +2,12 @@ import axios from "axios";
 import {
   getItemDetailsType,
   getItemListType,
+  putNewBookType,
   IBook,
   IBookDetails,
 } from "./bookServices.interface";
 
-const getItemList: getItemListType = ({ offset, count,page }) => {
+const getItemList: getItemListType = ({ offset, count, page }) => {
   return axios({
     method: "get",
     url: "api/v1/items",
@@ -28,19 +29,17 @@ const getItemDetails: getItemDetailsType = ({ itemID }) => {
   }).then((r) => r.data as IBookDetails);
 };
 
-const getBody = () => {
-  axios
-    .get("/api/body", {
-      params: {
-        ID: 12345,
-      },
-      data: {
-        data: "DATA",
-      },
-    })
-    .then(function (response) {
-      console.log({ Respuesta: response.data });
-    });
+const putNewBook: putNewBookType = ({ title, author, price, image }) => {
+  console.log("Enviando...")
+  return axios({
+    method: "put",
+    url: `/api/v1/items`,
+    data: { title, author, price, image },
+    headers: { "content-type": "application/json" },
+  }).then((r) => {
+    console.log("LOGRADO", r.data);
+    return r.data;
+  });
 };
 
-export { getItemList, getItemDetails, getBody };
+export { getItemList, getItemDetails, putNewBook };

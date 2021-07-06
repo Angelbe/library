@@ -1,4 +1,5 @@
 import { IBookDetails } from "src/services/bookServices.interface";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const bookDetailsList: IBookDetails[] = [
   {
@@ -38,7 +39,8 @@ const bookDetailsList: IBookDetails[] = [
   },
   {
     id: 6,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgDDUp0aHqOxedYAnTfgwv97oYP-rVC1bLSxDtZNSCkZxOGLUDBsdrpoKOph2JKyaJyBM&usqp=CAU",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgDDUp0aHqOxedYAnTfgwv97oYP-rVC1bLSxDtZNSCkZxOGLUDBsdrpoKOph2JKyaJyBM&usqp=CAU",
     title: "Umineko",
     author: "7th expansion",
     price: 10,
@@ -73,10 +75,13 @@ const bookDetailsList: IBookDetails[] = [
   },
 ];
 
-export default function handler(req, res) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<IBookDetails>
+) {
   const { id } = req.query;
   const result = bookDetailsList.find(
-    (element) => element.id === JSON.parse(id)
+    (element) => element.id === JSON.parse(id as string)
   );
-  res.status(200).json(result);
+  res.status(200).json(result as IBookDetails);
 }

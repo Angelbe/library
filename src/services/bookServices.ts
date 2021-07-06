@@ -1,20 +1,26 @@
 import axios from "axios";
 import {
+  getItemDetailsType,
+  getItemListType,
   IBook,
   IBookDetails,
-  getItemDetailsParams,
 } from "./bookServices.interface";
 
-const getItemList = () => {
+const getItemList: getItemListType = ({ offset, count,page }) => {
   return axios({
     method: "get",
     url: "api/v1/items",
+    params: {
+      offset,
+      count,
+      page,
+    },
+
     headers: { "content-type": "application/json" },
   }).then((r) => r.data as IBook[]);
 };
 
-const getItemDetails = ({ itemID }: any) => {
-  console.log(itemID);
+const getItemDetails: getItemDetailsType = ({ itemID }) => {
   return axios({
     method: "get",
     url: `/api/v1/items/${itemID}`,
@@ -22,4 +28,19 @@ const getItemDetails = ({ itemID }: any) => {
   }).then((r) => r.data as IBookDetails);
 };
 
-export { getItemList, getItemDetails };
+const getBody = () => {
+  axios
+    .get("/api/body", {
+      params: {
+        ID: 12345,
+      },
+      data: {
+        data: "DATA",
+      },
+    })
+    .then(function (response) {
+      console.log({ Respuesta: response.data });
+    });
+};
+
+export { getItemList, getItemDetails, getBody };

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/dist/client/image";
 import { theme } from "styles/theme";
 
 export const BookDetailsContainer = styled.div`

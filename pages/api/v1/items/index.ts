@@ -19,5 +19,24 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<IBook[]>
 ) {
-  res.status(200).json(listItems);
+  const { count, offset, page } = req.query;
+  const offsetNum = JSON.parse(offset as string);
+  const countNum = JSON.parse(count as string);
+  const pageNum = JSON.parse(page as string);
+
+  let result = listItems;
+  if (offsetNum > 0) {
+    result = result.slice(offsetNum);
+  }
+  if (countNum > 0) {
+    let endCount = pageNum * countNum;
+    let startCount = endCount - countNum;
+    if (endCount > listItems.length) {
+      endCount = listItems.length;
+      startCount = endCount - 5;
+    }
+    result = result.slice(startCount, endCount);
+  }
+
+  res.status(200).json(result);
 }

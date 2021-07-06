@@ -1,6 +1,6 @@
 ## Getting Started
 
-To start you only need tp run:
+To start the build you only need to run:
 
 ```bash
 npm run start

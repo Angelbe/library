@@ -54,7 +54,7 @@ const CreateBookForm: React.FC<CreateBookFormProps> = ({ closeModal }) => {
     setFormImage(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     setLoading(true);
     event.preventDefault();
 

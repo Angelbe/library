@@ -17,7 +17,7 @@ const PopupCreateBook: React.FC<PopupCreateBookProps> = ({ reloadList }) => {
       nested
       onClose={reloadList}
     >
-      {(close: any) => {
+      {(close: () => void) => {
         return (
           <ModalContainer className="modal">
             <CreateBookForm closeModal={close} />

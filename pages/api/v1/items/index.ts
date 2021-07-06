@@ -21,7 +21,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<IBook[] | string>
 ) {
-  let result = listItems;
+  let result = [...listItems];
 
   switch (req.method) {
     case "PUT":
@@ -49,15 +49,20 @@ export default function handler(
       const offsetNum = JSON.parse(offset as string);
       const countNum = JSON.parse(count as string);
       const pageNum = JSON.parse(page as string);
+      
       if (offsetNum > 0) {
         result = result.slice(offsetNum);
       }
+
       if (countNum > 0) {
         let endCount = pageNum * countNum;
         let startCount = endCount - countNum;
-        if (endCount > listItems.length) {
-          endCount = listItems.length;
-          startCount = endCount - 5;
+        if (endCount > result.length + countNum) {
+          endCount = result.length;
+          startCount = result.length;
+        } else if (pageNum > result.length / countNum) {
+          endCount = result.length;
+          startCount = result.length - (result.length % countNum);
         }
         result = result.slice(startCount, endCount);
       }

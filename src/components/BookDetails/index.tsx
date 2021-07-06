@@ -11,14 +11,13 @@ import {
   ImageContainer,
 } from "./BookDetails.styles";
 
-const BookDetails = () => {
+const BookDetails: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<IBookDetails | null>(null);
   const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
-    const { id } = router.query;
-
     if (!id) {
       return;
     }
@@ -31,10 +30,6 @@ const BookDetails = () => {
         setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    console.log(book);
-  }, [book]);
 
   if (loading) {
     return <Loader />;

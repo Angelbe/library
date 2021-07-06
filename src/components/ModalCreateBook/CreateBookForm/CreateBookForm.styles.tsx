@@ -1,6 +1,5 @@
 import { Tooltip } from "src/components/BookList/BookList.styles";
 import styled from "styled-components";
-import { theme } from "styles/theme";
 
 const FormContainer = styled.form`
   display: grid;

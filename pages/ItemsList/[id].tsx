@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -13,7 +13,7 @@ import BookDetails from "src/components/BookDetails";
 import backArrow from "public/arrow.png";
 import ZeeloHeader from "src/ZeeloHeader";
 
-export default function ItemDetails() {
+const ItemDetails: React.FC = () => {
   return (
     <HomeContainer>
       <Head>
@@ -51,4 +51,6 @@ export default function ItemDetails() {
       </HomeFooter>
     </HomeContainer>
   );
-}
+};
+
+export default ItemDetails;

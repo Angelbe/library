@@ -10,7 +10,7 @@ import {
 import BookList from "src/components/BookList";
 import ZeeloHeader from "src/ZeeloHeader";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <HomeContainer>
       <Head>
@@ -36,4 +36,6 @@ export default function Home() {
       </HomeFooter>
     </HomeContainer>
   );
-}
+};
+
+export default Home;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "styles/theme";
 
 export const BookDetailsContainer = styled.div`
   padding: 0 50px;
